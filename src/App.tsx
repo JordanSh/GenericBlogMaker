@@ -1,44 +1,54 @@
 import React, { useState } from 'react';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { GbmSider } from './components/GbmSider';
-import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
-import { paths } from './constants/paths';
-import { BlogPage } from './pages/BlogPage';
+import { Layout, theme } from "antd";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { paths } from "./constants/paths";
+import { BlogPage } from "./pages/BlogPage";
+import { GbmSider } from "./components/GbmSider";
+import { HomePage } from "./pages/HomePage";
+import { ContactPage } from "./pages/ContactPage";
+import { TopBarHeader } from "./components/TopBarHeader";
 
-const { Header, Content, Footer, Sider } = Layout;
-
-const Page: React.FC = () => {
+const App: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   return (
     <BrowserRouter>
-      <Layout style={{ minHeight: '100vh' }}>
-        <GbmSider />
-        <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }} />
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-
-
+      <Layout>
+        <GbmSider collapsed={collapsed} />
+        <TopBarHeader collapsed={collapsed} setCollapsed={setCollapsed} />
+        <Layout style={{ background: colorBgContainer }}>
+          <Layout.Content
+            style={{
+              overflow: "initial",
+              marginLeft: "auto",
+              marginTop: 64,
+              marginBottom: 64,
+              marginRight: "auto",
+              padding: 24,
+              paddingLeft: collapsed ? 24 : 200,
+              transition: "ease-out 0.25s",
+              minHeight: 280,
+              maxWidth: 1200,
+            }}
+          >
             <Routes>
-              <Route path="/" >
-                <Route path={paths.home} element={<div>home</div>} />
-                <Route path={paths.blog} element={<BlogPage />} />
-                <Route path={paths.contact} element={<div>contact</div>} />
+              <Route path="/">
+                <Route path={paths.home} element={<HomePage />} />
+                <Route
+                  path={paths.blog}
+                  element={<BlogPage collapsed={collapsed} />}
+                />
+                <Route path={paths.contact} element={<ContactPage />} />
               </Route>
             </Routes>
-
-          </Content>
-          <Footer style={{}}>My Blog ©2023 Created by -EnterName-</Footer>
+          </Layout.Content>
         </Layout>
       </Layout>
     </BrowserRouter>
   );
 };
 
-export default Page;
+export default App;
