@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, theme } from "antd";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { paths } from "./constants/paths";
 import { BlogPage } from "./pages/BlogPage";
 import { GbmSider } from "./components/GbmSider";
@@ -35,14 +35,13 @@ const App: React.FC = () => {
             }}
           >
             <Routes>
-              <Route path="/">
-                <Route path={paths.home} element={<HomePage />} />
-                <Route
-                  path={paths.blog}
-                  element={<BlogPage collapsed={collapsed} />}
-                />
-                <Route path={paths.contact} element={<ContactPage />} />
-              </Route>
+              <Route path={paths.home} element={<HomePage />} />
+              <Route
+                path={paths.blog}
+                element={<BlogPage collapsed={collapsed} />}
+              />
+              <Route path={paths.contact} element={<ContactPage />} />
+              <Route path="*" element={<Navigate to={paths.home} />} />
             </Routes>
           </Layout.Content>
         </Layout>
