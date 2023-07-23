@@ -23,10 +23,7 @@ const App: React.FC = () => {
           <Layout.Content
             style={{
               overflow: "initial",
-              marginLeft: "auto",
-              marginTop: 64,
-              marginBottom: 64,
-              marginRight: "auto",
+              margin: "64px auto",
               padding: 24,
               paddingLeft: collapsed ? 24 : 200,
               transition: "ease-out 0.25s",
