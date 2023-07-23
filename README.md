@@ -1,12 +1,11 @@
 # Generic Blog Maker
 
-## How to add blogs
-### How to personalize
+## How to personalize
   
 1. go to `gbmconfig.ts` file
 2. config the general messages and contact details to your likings
 
-### How to add blogs
+## How to add blogs
 
 1. create a new file in the blogs folder, use unique names and use dashes to separate words. a best practice would be to write the date in this format:
     `YYYYMMDD` before the actual name. for example: `20231607-how-to-write-blogs.ts`
