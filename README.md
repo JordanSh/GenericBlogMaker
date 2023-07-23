@@ -52,4 +52,14 @@ export const howToAddBlogs: Blog = {
     writerName: 'Writer Name',
     avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=1',
     coverImageUrl: 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png',
-    markdown: `some escaped markdown content``
+    markdown: `some escaped markdown content`
+}
+```
+
+Add the file to `index.ts` barrel
+
+```typescript
+export * from "./20232307-how-to-write-markdown";
+export * from "./20232307-how-to-add-blogs";
+export * from "./20232307-new-blog"; <- new blog file
+```
