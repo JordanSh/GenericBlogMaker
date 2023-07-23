@@ -29,6 +29,8 @@ export const GbmSider = ({ collapsed }: { collapsed: boolean }) => {
 
       setSelectedKey(blogId);
     }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
 
   const onItemClick = ({ path }: { path: string }) => {
